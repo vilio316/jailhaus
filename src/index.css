@@ -1,0 +1,129 @@
+*{ box-sizing: border-box;}
+html{
+    font-size: 16px;
+    font-family: sans-serif;
+    width: 90%;
+    margin: auto;
+}
+.grid{
+    display: grid;
+}
+.lead{
+    font-size: 7.5rem;
+    font-weight: bold;
+    margin: 2.5rem 0;
+}
+.follow{
+    font-size: 2.5rem;
+    margin: 1rem 0;
+}
+.lead, .follow{
+    text-align: center;
+}
+.logo{
+    text-align: center;
+}
+.header{
+    grid-template-columns: 20% 60% 20%;
+    align-items: center;
+}
+.topNav{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    justify-content: center;
+}
+ul.features{
+    margin: 0;
+    list-style-type: square;
+}
+.price_board{
+    grid-template-columns: auto auto auto;
+    justify-items: center;
+}
+.price_tier{
+    text-transform: capitalize;
+    font-weight: bold;
+    text-align: center;
+}
+.side{
+    grid-template-columns: auto auto;
+}
+a:visited{
+    color: black;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    font-style: italic;
+}
+footer{
+    grid-template-columns: auto auto auto;
+    justify-items: center
+}
+.header a{
+    padding: 0.5rem
+}
+.header a:hover{
+    font-style: italic;
+    text-decoration: underline;
+}
+.hidden{
+    opacity: 0.7;
+}
+.hidden::marker{
+    color: red;
+    content: 'x'
+}
+li::marker{
+    color: green;
+    content: '*';
+}
+.cta{
+    display:grid ;
+    justify-self: center;
+    background-color: blueviolet;
+    font-weight: bold;
+    border-radius: 1.5rem;
+    color: white;
+    padding: 1rem 0.5rem;
+    width: 25%;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.cta:hover{
+    opacity: 0.8;
+    transform: skewX(-15deg);
+}
+
+.links a{
+    display: block
+}
+.dash_head{
+    grid-template-columns: 80% auto;
+}
+.user_icon{
+    justify-self: end;
+    align-self: center;
+}
+.body{
+    grid-template-columns: 10% 90%;
+    gap: 0.5rem;
+    transition: 1s all ease-out
+}
+.side_nav{
+    gap: 1rem;
+    border-right: 1px solid blue;
+    transition: 1s all ease-in-out;
+    background-color: teal;
+    border-radius: 1rem;
+    padding: 0.5rem
+}
+.thingies{
+    grid-template-columns: auto auto auto;
+}
+.passText{
+    font-weight: bold;
+}
