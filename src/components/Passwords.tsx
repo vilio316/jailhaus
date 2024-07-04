@@ -1,10 +1,10 @@
 import { SideNav } from "./SideNav";
+import { TopTitleBar } from "./TopTitle";
 
 export default function Passwords(){
-
     return(
         <>
-        <h2>Passwords</h2>
+        <TopTitleBar text={'Passwords'} />
         <div className="body grid">
         <SideNav/>
         <div className="details">

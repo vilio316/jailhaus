@@ -1,13 +1,9 @@
 import { SideNav } from "./SideNav"
+import { TopTitleBar } from "./TopTitle"
 export default function Dashboard(){
     return(
         <>
-        <div className='grid dash_head'>
-        <h2>Dashboard</h2>
-        <div className='user_icon'>
-            <img src='' alt="User Icon"/>
-        </div>
-        </div>
+        <TopTitleBar text={"Dashboard"}/>
         <div className="body grid">
             <SideNav/>
             <div className="actual_dash_body">

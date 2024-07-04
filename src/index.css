@@ -115,7 +115,6 @@ li::marker{
 }
 .side_nav{
     gap: 1rem;
-    border-right: 1px solid blue;
     transition: 1s all ease-in-out;
     background-color: teal;
     border-radius: 1rem;
