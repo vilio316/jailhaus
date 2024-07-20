@@ -28,13 +28,19 @@ export function SignIn(){
 
     return(
         <>
-        <input type='text' placeholder="email" onChange={(e)=> changeMail(e.target.value)}/>
-        <input type="password" name="password" id="pwd" placeholder="pwd" onChange={(e) => changePassword(e.target.value)} />
+        <div>
+            <p>Sign Up For JailHaus</p>
+        <input type='text' placeholder="Email" onChange={(e)=> changeMail(e.target.value)}/>
+        <input type="password" name="password" id="Password" placeholder="pwd" onChange={(e) => changePassword(e.target.value)} />
         <button onClick={()=> signUp()}>Sign Up!</button>
+        </div>
 
+        <div>
+            <p>Sign In to your Jailhaus</p>
         <input type='text' placeholder="Sign_IN: Email" onChange={(e)=> signMail(e.target.value)}/>
-        <input type="password" name="password" id="pwd" placeholder="Sign In: Password" onChange={(e) => signPassword(e.target.value)} />
-        <button onClick={()=> signIn()}>Sign Up!</button>
+        <input type="password" name="password" id="password" placeholder="Sign In: Password" onChange={(e) => signPassword(e.target.value)} />
+        <button onClick={()=> signIn()}>Sign In!</button>
+        </div>
         </>
     )
 }

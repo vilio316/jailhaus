@@ -1,9 +1,11 @@
 *{ box-sizing: border-box;}
 html{
     font-size: 16px;
-    font-family: sans-serif;
-    width: 90%;
-    margin: auto;
+    font-family: sans-serif
+}
+body{
+    width: 95%;
+    margin: auto
 }
 .grid{
     display: grid;
@@ -58,9 +60,14 @@ a{
 a:hover{
     font-style: italic;
 }
+input{
+    display: block;
+}
 footer{
-    grid-template-columns: auto auto auto;
-    justify-items: center
+    grid-template-columns: 30% 30% 30%;
+    gap: 1rem;
+    justify-items: center;
+    width: 100%;
 }
 .header a{
     padding: 0.5rem
@@ -125,4 +132,13 @@ li::marker{
 }
 .passText{
     font-weight: bold;
+}
+
+@media screen and (max-width: 768px){
+    .grid{
+        grid-template-columns: auto;
+    }
+    html{
+        font-size: 12px;    
+    }
 }
