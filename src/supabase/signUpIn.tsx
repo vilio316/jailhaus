@@ -1,11 +1,14 @@
 import { useState } from "react";
 import supaClient from "./supaconfig"
+import { setID } from "../redux/idState";
+import { useDispatch } from "react-redux";
 
 export function SignIn(){
     let [email, changeMail] = useState('');
     let [password, changePassword] = useState('')
     let [sign_inEmail, signMail] = useState('');
     let [sign_inPassword, signPassword] = useState('')
+    let dispo= useDispatch()
 
 
     async function signUp(){
@@ -23,8 +26,8 @@ export function SignIn(){
             password: sign_inPassword
         })
         console.log(data, error)
+        dispo(setID(data.user?.id))
     }
-
 
     return(
         <>
@@ -39,8 +42,13 @@ export function SignIn(){
             <p>Sign In to your Jailhaus</p>
         <input type='text' placeholder="Sign_IN: Email" onChange={(e)=> signMail(e.target.value)}/>
         <input type="password" name="password" id="password" placeholder="Sign In: Password" onChange={(e) => signPassword(e.target.value)} />
-        <button onClick={()=> signIn()}>Sign In!</button>
+        <button onClick={()=> {signIn()}}>Sign In!</button>
         </div>
         </>
     )
+}
+
+export async function signOut(){
+    let { error } = await supaClient.auth.signOut()
+    console.log(error)
 }
