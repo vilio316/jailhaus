@@ -12,14 +12,25 @@ export type Database = {
       data_bank: {
         Row: {
           id: string
+          passwords: Json| null
         }
         Insert: {
-          id?: string
+          id: string
+          passwords?: Json| null
         }
         Update: {
           id?: string
+          passwords?: Json| null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "data_bank_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
