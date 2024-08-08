@@ -3,40 +3,33 @@ import { SideNav } from "./SideNav";
 import { TopTitleBar } from "./TopTitle";
 import { useEffect, useState } from "react";
 import supaClient from "../supabase/supaconfig";
-import { useSelector } from "react-redux";
 import { userID } from "../redux/idState";
-import { Json } from "../supabase";
+import { useAppSelector } from "../redux/hooks";
 
 /*type PwdDetail = {
     service: string,
     password: string,
 }*/
 
-type Insert ={
+/*type Insert ={
     passwords?: Json| null
   }[] | any[]
+*/
+
 export default function Passwords(){
-    let select = useSelector(userID)
-    console.log(select)
-    let [state, changeState] = useState<Insert>([])
+    const user_value = useAppSelector(userID)
+    console.log(user_value)
 
     useEffect(()=> {
-        async function schaums(){
-            const {data, error} = await supaClient.from('data_bank').select('passwords').eq('id', select);
-            const newArr = [...state, data]
-            changeState(newArr)
-            console.log(newArr)
-            if(error){
-                return {error};
-            }
-           return {data}
-        }
-        schaums()
+        async function loadVal(){
+            const {data} = await supaClient.from('data_bank').select("passwords").eq('id', user_value);
+            console.log(data)
+        };
+        loadVal()
     }, [])
-    
     async function house(){
         let {data, error} = await supaClient.from('data_bank').update({
-            id: select,
+            id: user_value,
             passwords: [{
                 service: "Google",
                 password: 'SegregatedWerey69'
@@ -50,9 +43,8 @@ export default function Passwords(){
                 password: 'Escudero55'
             }, 
         ]
-        }).eq('id',select)
+        }).eq('id', user_value)
         console.log(data, error)
-        console.log(select)
     }
 
 
@@ -95,7 +87,7 @@ export default function Passwords(){
                 </div>
             </div>
         </>: <div>
-            Housing opportunities for twits!
+            <p>Housing for twits!</p>
             </div>}
             <p>{JSON.stringify(value)}</p>
             <button className="plus_button" onClick={()=> setModal(!modal_state)}>

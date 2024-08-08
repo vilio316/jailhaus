@@ -1,15 +1,15 @@
 import { useState } from "react";
 import supaClient from "./supaconfig"
-import { setID } from "../redux/idState";
-import { useDispatch } from "react-redux";
+import { setID } from "../redux/idState"
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../redux/hooks";
 
 export function SignIn(){
     let [email, changeMail] = useState('');
     let [password, changePassword] = useState('')
     let [sign_inEmail, signMail] = useState('');
     let [sign_inPassword, signPassword] = useState('')
-    let dispo= useDispatch()
+    let dispo= useAppDispatch()
     let goTo = useNavigate()
 
 
@@ -27,8 +27,8 @@ export function SignIn(){
             email: sign_inEmail,
             password: sign_inPassword
         })
-        console.log(data, error)
         dispo(setID(data.user?.id))
+        console.log(data, error)
         goTo('/dashboard')
     }
 

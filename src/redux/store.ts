@@ -7,6 +7,6 @@ export const redStore = configureStore({
     }
 })
 
-export type AppStore = typeof redStore
-export type RootState = ReturnType<AppStore['getState']>
-export type AppDispatch = AppStore['dispatch']
+export type RootState = ReturnType<typeof redStore.getState>
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof redStore.dispatch
