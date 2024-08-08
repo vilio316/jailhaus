@@ -18,11 +18,13 @@ const idSlice = createSlice({
 
 type Stamina = {
     id: {
-        idVal: string
+        idVal: string,
+        pwdArr : any[],
     },
+
 }
 
 export const userID = (state: Stamina) => state.id.idVal
-export const userPwds = (state : any)=> state.id.pwdArr
+export const userPwds = (state : Stamina)=> state.id.pwdArr
 export const { setID, changePwds } = idSlice.actions
 export default idSlice.reducer

@@ -6,10 +6,10 @@ import supaClient from "../supabase/supaconfig";
 import { changePwds, userID, userPwds } from "../redux/idState";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
-/*type PwdDetail = {
+type PwdDetail = {
     service: string,
     password: string,
-}*/
+}
 
 /*type Insert ={
     passwords?: Json| null
@@ -25,15 +25,13 @@ export default function Passwords(){
         async function loadVal(){
             if(user_value.length > 0){
             const {data} = await supaClient.from('data_bank').select("passwords").eq('id', user_value);
-            console.log(data)
             let array = []
             if(data){
             for(let i = 0; i < data?.length ;i++){
-                array.push(data[i])
+                array.push(data[i].passwords)
                 sendOff(changePwds(array))
             }
             }
-            console.log(user_passes)
         }
         else{
             console.log("Not Yet")
@@ -41,22 +39,17 @@ export default function Passwords(){
     }
         loadVal()
     }, [user_value])
-    async function house(){
+
+    async function house(service: string, password: string){
+        let passObject = {
+            service: service, 
+            password: password,
+        }
+        let value : any[]= user_passes[0]
+        value.push(passObject)
         let {data, error} = await supaClient.from('data_bank').update({
             id: user_value,
-            passwords: [{
-                service: "Google",
-                password: 'SegregatedWerey69'
-            },
-            {
-                service: 'Apple',
-                password: 'Efd2225/'
-            }, 
-            {
-                service: 'MiCare',
-                password: 'Escudero55'
-            }, 
-        ]
+            passwords: value, 
         }).eq('id', user_value)
         console.log(data, error)
     }
@@ -65,6 +58,7 @@ export default function Passwords(){
     let [modal_state, setModal] = useState(false)
     let [pass, toSeed] = useState(true)
     let [value, setVal]= useState('')
+    let [password, setPass]= useState('')
 
     return(
         <>
@@ -90,26 +84,37 @@ export default function Passwords(){
                     <label htmlFor='Service'>Service</label>
                     <input type="text" id="services" maxLength={50} onChange={(e)=> setVal(e.target.value)}/>
                     <label htmlFor='password'>Password</label>
-                    <input type="text" id="password" maxLength={50}/>
-                   
+                    <input type="text" id="password" maxLength={50} onChange={(e)=> setPass(e.target.value)}/>
+                    <button>Add Password</button>
                 </div> : <div>
                     <p>Seed Phrase</p>
                     <textarea placeholder="Seed Phrase" cols={25} rows={13}>
                     </textarea>
                     </div>}
-                    <button >Push Val!</button>
                 </div>
             </div>
         </>: <div>
             <p>Housing for twits!</p>
             </div>}
-            <p>{JSON.stringify(value)}</p>
+
+            <div>
+            {user_passes.map((item : any[]) => (
+                item.map((pass_detail : PwdDetail) => (
+                    <div key={item.indexOf(pass_detail)}>
+                        <p>{pass_detail.service}</p>
+                        <p>{pass_detail.password}</p>
+                    </div>
+                ))
+            ))}
+            </div>
+
             <button className="plus_button" onClick={()=> setModal(!modal_state)}>
             <FaAward/>
             </button>
-            <button onClick={()=> house()}>
+            <button onClick={()=> house(value, password )}>
                 Check!
             </button>
+            <button onClick={()=> console.log(user_passes)}>Check State</button>
         </div>
         </div>
         </>
