@@ -45,13 +45,14 @@ export default function Passwords(){
             service: service, 
             password: password,
         }
-        let value : any[]= user_passes[0]
-        value.push(passObject)
+        let value : any[]= [...user_passes[0], passObject]
+        if(service.length > 0 && password.length > 0){
         let {data, error} = await supaClient.from('data_bank').update({
             id: user_value,
             passwords: value, 
         }).eq('id', user_value)
         console.log(data, error)
+    }
     }
 
 
@@ -81,11 +82,13 @@ export default function Passwords(){
                     <button onClick={()=> toSeed(false)}>Seed Phrase</button>
                     <span onClick={()=> setModal(false)}>x</span>
                     {pass ? <div>
+                    <form>
                     <label htmlFor='Service'>Service</label>
-                    <input type="text" id="services" maxLength={50} onChange={(e)=> setVal(e.target.value)}/>
+                    <input type="text" id="services" required maxLength={50} onChange={(e)=> setVal(e.target.value)}/>
                     <label htmlFor='password'>Password</label>
-                    <input type="text" id="password" maxLength={50} onChange={(e)=> setPass(e.target.value)}/>
-                    <button>Add Password</button>
+                    <input type="password" id="password" required maxLength={50} onChange={(e)=> setPass(e.target.value)}/>
+                    <button  type="submit" onClick={()=> house(value, password)}>Add Password</button>
+                    </form>
                 </div> : <div>
                     <p>Seed Phrase</p>
                     <textarea placeholder="Seed Phrase" cols={25} rows={13}>
@@ -110,9 +113,6 @@ export default function Passwords(){
 
             <button className="plus_button" onClick={()=> setModal(!modal_state)}>
             <FaAward/>
-            </button>
-            <button onClick={()=> house(value, password )}>
-                Check!
             </button>
             <button onClick={()=> console.log(user_passes)}>Check State</button>
         </div>
