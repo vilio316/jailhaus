@@ -3,8 +3,8 @@ import { SideNav } from "./SideNav";
 import { TopTitleBar } from "./TopTitle";
 import { useEffect, useState } from "react";
 import supaClient from "../supabase/supaconfig";
-import { userID } from "../redux/idState";
-import { useAppSelector } from "../redux/hooks";
+import { changePwds, userID, userPwds } from "../redux/idState";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 /*type PwdDetail = {
     service: string,
@@ -18,15 +18,29 @@ import { useAppSelector } from "../redux/hooks";
 
 export default function Passwords(){
     const user_value = useAppSelector(userID)
-    console.log(user_value)
+    const user_passes = useAppSelector(userPwds)
+    const sendOff = useAppDispatch()
 
     useEffect(()=> {
         async function loadVal(){
+            if(user_value.length > 0){
             const {data} = await supaClient.from('data_bank').select("passwords").eq('id', user_value);
             console.log(data)
-        };
+            let array = []
+            if(data){
+            for(let i = 0; i < data?.length ;i++){
+                array.push(data[i])
+                sendOff(changePwds(array))
+            }
+            }
+            console.log(user_passes)
+        }
+        else{
+            console.log("Not Yet")
+        }
+    }
         loadVal()
-    }, [])
+    }, [user_value])
     async function house(){
         let {data, error} = await supaClient.from('data_bank').update({
             id: user_value,
@@ -97,9 +111,6 @@ export default function Passwords(){
                 Check!
             </button>
         </div>
-        </div>
-        <div>
-                <p>And now, the end is near.</p>
         </div>
         </>
     )
