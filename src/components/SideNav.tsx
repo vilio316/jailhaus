@@ -1,8 +1,16 @@
 import { FaFile, FaHome, FaSignOutAlt } from "react-icons/fa";
 import { FaLock } from "react-icons/fa6";
 import { FcSettings } from "react-icons/fc";
+import { signOut } from "../supabase/signUpIn"
+import { useAppDispatch } from "../redux/hooks"
+import { changePwds, setID } from "../redux/idState"
+import { useNavigate } from "react-router-dom"
+
 
 export function SideNav(){
+    let dispo = useAppDispatch();
+    let drought = useNavigate();
+    
     return(
         <>
             <div className="side_nav grid">
@@ -27,7 +35,13 @@ export function SideNav(){
                 </div>
                 <div className="nav_icon">
                 <FaSignOutAlt/>
-                <a href="/">Sign Out</a>
+                <button onClick={()=> {
+                signOut(); 
+                dispo(setID(''));
+                dispo(changePwds([]));
+                drought('/sign-up')
+                }
+                }>Sign Out</button>
                 </div>
             </div>
         </>

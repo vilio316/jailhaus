@@ -91,7 +91,7 @@ export default function Passwords(){
                     <span onClick={()=> setModal(false)}>x</span>
                     {pass ? <div>
                     <form>
-                    <label htmlFor='Service'>Service</label>
+                    <label htmlFor='services'>Service</label>
                     <input type="text" id="services" required maxLength={50} onChange={(e)=> setVal(e.target.value)}/>
                     <label htmlFor='password'>Password</label>
                     <input type="password" id="password" required maxLength={50} onChange={(e)=> setPass(e.target.value)}/>
@@ -109,14 +109,14 @@ export default function Passwords(){
             </div>}
 
             <div>
-            {user_passes.map((item : any[]) => (
-                item.map((pass_detail : PwdDetail) => (
-                    <div key={item.indexOf(pass_detail)}>
-                        <p>{pass_detail.service}</p>
-                        <p>{pass_detail.password}</p>
-                    </div>
-                ))
-            ))}
+                {user_passes.map((item : any[]) => (
+                    item.map((pass_detail: PwdDetail) => (
+                        <div key={item.indexOf(pass_detail)}>
+                            <p>{pass_detail.service}</p>
+                            <p>{pass_detail.password}</p>
+                        </div>
+                    ))
+                ))}
             </div>
 
             <button className="plus_button" onClick={()=> setModal(!modal_state)}>

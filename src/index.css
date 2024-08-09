@@ -128,7 +128,7 @@ li::marker{
     align-self: center;
 }
 .body{
-    grid-template-columns: 10% 90%;
+    grid-template-columns: 12.5% 87.5%;
     gap: 0.5rem;
     transition: 1s all ease-out
 }
@@ -137,7 +137,11 @@ li::marker{
     transition: 1s all ease-in-out;
     background-color: teal;
     border-radius: 1rem;
-    padding: 0.5rem
+    padding: 0.5rem;
+    max-height: 20rem;
+}
+.side_nav a{
+    padding: 0.25rem;
 }
 .thingies{
     grid-template-columns: auto auto auto;
