@@ -57,7 +57,7 @@ export default function Passwords(){
 
     async function postSeedPhrase(){
         let {data, error} = await supaClient.from('data_bank').update({
-            seed_phrases : seed
+            seed_phrases : seed,
         }).eq('id', user_value)
         console.group(data, error)
     }
@@ -109,14 +109,15 @@ export default function Passwords(){
             </div>}
 
             <div>
-                {user_passes.map((item : any[]) => (
-                    item.map((pass_detail: PwdDetail) => (
+                {user_passes.map((item : any[] ) => (
+                    item.map((pass_detail : PwdDetail) => (
                         <div key={item.indexOf(pass_detail)}>
                             <p>{pass_detail.service}</p>
                             <p>{pass_detail.password}</p>
                         </div>
                     ))
-                ))}
+                    )
+                )}
             </div>
 
             <button className="plus_button" onClick={()=> setModal(!modal_state)}>

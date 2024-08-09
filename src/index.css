@@ -99,6 +99,11 @@ li::marker{
     color: green;
     content: '*';
 }
+.signOut_button{
+    outline: none;
+    border: none;
+    background-color: teal;
+}
 .cta{
     display:grid ;
     justify-self: center;

@@ -35,7 +35,7 @@ export function SideNav(){
                 </div>
                 <div className="nav_icon">
                 <FaSignOutAlt/>
-                <button onClick={()=> {
+                <button className= "signOut_button" onClick={()=> {
                 signOut(); 
                 dispo(setID(''));
                 dispo(changePwds([]));
