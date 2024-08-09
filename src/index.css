@@ -19,6 +19,9 @@ body{
     place-content: center;
     background-color: rgba(255, 255, 255, 0.5);
 }
+#services{
+    text-transform: capitalize;
+}
 .lead{
     font-size: 7.5rem;
     font-weight: bold;

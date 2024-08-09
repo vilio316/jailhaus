@@ -12,15 +12,18 @@ export type Database = {
       data_bank: {
         Row: {
           id: string
-          passwords: Json| null
+          passwords: Json[] | null
+          seed_phrases: string | null
         }
         Insert: {
           id: string
-          passwords?: Json| null
+          passwords?: Json[] | null
+          seed_phrases?: string | null
         }
         Update: {
           id?: string
-          passwords?: Json| null
+          passwords?: Json[] | null
+          seed_phrases?: string | null
         }
         Relationships: [
           {

@@ -7,7 +7,7 @@ let appKey = import.meta.env.VITE_API_KEY
 let supaClient = createClient<Database>(appURL, appKey)
 export default supaClient
 
-const subscriber = supaClient.channel("cartUpdates").on('postgres_changes', 
+supaClient.channel("cartUpdates").on('postgres_changes', 
     {event: "*", schema: "public", table:"data_bank"}, (payload) => {
         console.log(payload)
     }).subscribe()

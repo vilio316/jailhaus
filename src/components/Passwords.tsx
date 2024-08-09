@@ -55,11 +55,19 @@ export default function Passwords(){
     }
     }
 
+    async function postSeedPhrase(){
+        let {data, error} = await supaClient.from('data_bank').update({
+            seed_phrases : seed
+        }).eq('id', user_value)
+        console.group(data, error)
+    }
 
     let [modal_state, setModal] = useState(false)
     let [pass, toSeed] = useState(true)
     let [value, setVal]= useState('')
     let [password, setPass]= useState('')
+    let [seed, setSeed] = useState('')
+
 
     return(
         <>
@@ -87,17 +95,17 @@ export default function Passwords(){
                     <input type="text" id="services" required maxLength={50} onChange={(e)=> setVal(e.target.value)}/>
                     <label htmlFor='password'>Password</label>
                     <input type="password" id="password" required maxLength={50} onChange={(e)=> setPass(e.target.value)}/>
-                    <button  type="submit" onClick={()=> house(value, password)}>Add Password</button>
+                    <button onClick={()=> house(value, password)}>Add Password</button>
                     </form>
                 </div> : <div>
                     <p>Seed Phrase</p>
-                    <textarea placeholder="Seed Phrase" cols={25} rows={13}>
+                    <textarea onChange={(e)=> {setSeed(e.target.value); console.log(seed)} } placeholder="Seed Phrase" cols={25} rows={13}>
                     </textarea>
+                    <button onClick={postSeedPhrase}>Upload Seed Phrase</button>
                     </div>}
                 </div>
             </div>
         </>: <div>
-            <p>Housing for twits!</p>
             </div>}
 
             <div>

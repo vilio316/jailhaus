@@ -27,9 +27,14 @@ export function SignIn(){
             email: sign_inEmail,
             password: sign_inPassword
         })
-        dispo(setID(data.user?.id))
-        console.log(data, error)
+        if(data.user){
+        dispo(setID(data.user.id))
+        console.log(data)
         goTo('/dashboard')
+        }
+        else{
+            console.log(error)
+        }
     }
 
     return(

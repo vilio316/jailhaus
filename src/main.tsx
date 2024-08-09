@@ -7,7 +7,8 @@ import Passwords from './components/Passwords.js'
 import { SignIn } from './supabase/signUpIn.js'
 import Error from './components/Error.js'
 import { Provider } from 'react-redux'
-import { redStore } from './redux/store.js'
+import { persStore, redStore } from './redux/store.js'
+import { PersistGate } from 'redux-persist/integration/react'
 
 const routes = createBrowserRouter([
   {
@@ -35,6 +36,8 @@ const routes = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <Provider store = {redStore}>
-  <RouterProvider router={routes}/>
+    <PersistGate loading={null} persistor={persStore}>
+      <RouterProvider router={routes}/>
+    </PersistGate>
   </Provider>
 )
