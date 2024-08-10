@@ -10,6 +10,7 @@ import { Provider } from 'react-redux'
 import { persStore, redStore } from './redux/store.js'
 import { PersistGate } from 'redux-persist/integration/react'
 
+
 const routes = createBrowserRouter([
   {
     path: '/',
@@ -30,7 +31,7 @@ const routes = createBrowserRouter([
     path: '/sign-up',
     element: <SignIn/>,
     errorElement: <Error/>,
-  }
+  },
 ])
 
 

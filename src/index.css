@@ -91,6 +91,9 @@ footer{
 .hidden{
     opacity: 0.7;
 }
+label{
+    display: block;
+}
 .hidden::marker{
     color: red;
     content: 'x'

@@ -27,7 +27,7 @@ export function SideNav(){
                 </div>
                 <div className="nav_icon">
                 <FaFile/>
-                <a href="/dashboard">Secure Files</a>
+                <a href="/dashboard/secure_files">Secure Files</a>
                 </div>
                 <div className="nav_icon">
                 <FcSettings/>
