@@ -4,7 +4,7 @@ type seedStyle = {
 }
 
 export default function Seeds(props : any){
-    let optimus = props.array 
+    let optimus: any[] = props.array 
     return(
         <>
             <div>

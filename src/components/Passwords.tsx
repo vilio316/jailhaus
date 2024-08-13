@@ -1,4 +1,3 @@
-import { FaAward } from "react-icons/fa6";
 import { SideNav } from "./SideNav";
 import { TopTitleBar } from "./TopTitle";
 import { useEffect, useState } from "react";
@@ -6,6 +5,7 @@ import supaClient from "../supabase/supaconfig";
 import { changePwds, userID, userPwds, userSeeds, setSeedValues} from "../redux/idState";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import Seeds from "./SeedPhrases";
+import { FaPlusCircle } from "react-icons/fa";
 
 type PwdDetail = {
     service: string,
@@ -109,11 +109,17 @@ export default function Passwords(){
             <h3>Details for Your Passwords</h3>
         {modal_state ? <>
             <div className="modal_wrapper grid">
-                <div className="grid" style={{position: "relative"}}>
+                <div className="grid" style={{
+                    position: "relative",
+                    borderRadius: "1.25rem",
+                    backgroundColor: "beige",
+                    padding: "1rem",
+                }}>
                     <span style={{
                         fontWeight: 'bold',
                         fontSize: "2rem",
-                        margin: "0.5rem 0"
+                        margin: "0.5rem 0",
+                        padding: "0.5rem",
                     }}>Add New: </span>
                     <div className="grid button_hold" style={{gridTemplateColumns:" auto auto"}}>
                     <button onClick={()=> toSeed(true)}>Password</button> 
@@ -125,18 +131,17 @@ export default function Passwords(){
                     <input type="text" id="services" required maxLength={50} onChange={(e)=> setVal(e.target.value)}/>
                     <label htmlFor='password'>Password</label>
                     <input type="password" id="password" required maxLength={50} onChange={(e)=> setPass(e.target.value)}/>
-                    <button onClick={()=> {house(value, password)}}>Add Password</button>
+                    <button onClick={()=> {house(value, password)}} className="add_button">Add Password</button>
                 </div> : 
                 
                 <div>
-                    <p>Seed Phrase</p>
                     <label htmlFor="seed_service">Service / Wallet</label>
                     <input type="text" name="Seed Service" id="seed_service" onChange={(e) => changeSeedService(e.target.value)}/>
 
                     <label htmlFor="seed_value">Seed Phrase</label>
                     <textarea onChange={(e)=> {setSeed(e.target.value); console.log(seed)}} id='seed_value' placeholder="Seed Phrase" cols={25} rows={13} maxLength={250} />
 
-                    <button onClick={()=> postSeedPhrase(seed_service, seed)}>Upload Seed Phrase</button>
+                    <button onClick={()=> postSeedPhrase(seed_service, seed)} className="add_button">Upload Seed Phrase</button>
                     </div>
                     }
                 </div>
@@ -164,9 +169,11 @@ export default function Passwords(){
             </div>
             <Seeds array={user_seed_values}/>
             <button className="plus_button" onClick={()=> setModal(!modal_state)}>
-            <FaAward/>
+                <span>
+            <FaPlusCircle/>
+                </span>
+            <span>Add New Item</span>
             </button>
-            <button onClick={()=> console.log(user_passes)}>Check State</button>
         </div>
         </div>
         </>
