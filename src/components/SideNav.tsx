@@ -3,7 +3,7 @@ import { FaLock } from "react-icons/fa6";
 import { FcSettings } from "react-icons/fc";
 import { signOut } from "../supabase/signUpIn"
 import { useAppDispatch } from "../redux/hooks"
-import { changePwds, setID } from "../redux/idState"
+import { changePwds, setID, setSeedValues } from "../redux/idState"
 import { useNavigate } from "react-router-dom"
 
 
@@ -39,6 +39,7 @@ export function SideNav(){
                 signOut(); 
                 dispo(setID(''));
                 dispo(changePwds([]));
+                dispo(setSeedValues([]));
                 drought('/sign-up')
                 }
                 }>Sign Out</button>

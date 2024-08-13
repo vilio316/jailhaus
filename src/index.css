@@ -4,11 +4,40 @@ html{
     font-family: sans-serif
 }
 body{
+    display: grid;
+    place-items: center;
+}
+#root{
+    display: grid; 
     width: 95%;
-    margin: auto
+    padding: 0.5rem;
 }
 .grid{
     display: grid;
+}
+.button_hold{
+    gap: 0.25rem
+}
+.button_hold > button{
+    outline: none;
+    border: 0;
+    border-radius: 1.25rem;
+    background-color: teal;
+    color: white;
+    padding: 0.5rem 
+}
+input[type="text"], input[type="password"], textarea{
+    display: block;
+    border-radius: 1.25rem;
+    font-size: 1.25rem;
+    margin: 0.5rem 0;
+    outline: none;
+    border: 0.125rem solid black;
+}
+label{
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
 }
 .modal_wrapper{
     position: absolute;
@@ -98,10 +127,24 @@ label{
     color: red;
     content: 'x'
 }
+.pass_container{
+    grid-template-columns: auto auto auto auto;
+}
 li::marker{
     color: green;
     content: '*';
 }
+
+.close_button{
+    font-size: 2.5rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.close_button:hover{
+    font-weight: bold;
+}
+
 .signOut_button{
     outline: none;
     border: none;
@@ -157,12 +200,27 @@ li::marker{
 .passText{
     font-weight: bold;
 }
-
+.pass_head{
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.pass_string{
+    width: 90%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.pass_data{
+    padding: 0.5rem;
+}
 @media screen and (max-width: 768px){
     .grid{
         grid-template-columns: auto;
     }
     html{
         font-size: 12px;    
+    }
+    .pass_container{
+        grid-template-columns: auto auto auto;
     }
 }

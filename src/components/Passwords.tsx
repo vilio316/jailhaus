@@ -100,18 +100,26 @@ export default function Passwords(){
 
     return(
         <>
+        <div>
         <TopTitleBar text={'Passwords'} />
+        </div>
         <div className="body grid">
         <SideNav/>
         <div className="details">
             <h3>Details for Your Passwords</h3>
         {modal_state ? <>
             <div className="modal_wrapper grid">
-                <div className="grid">
-                    <p>Add New: </p>
+                <div className="grid" style={{position: "relative"}}>
+                    <span style={{
+                        fontWeight: 'bold',
+                        fontSize: "2rem",
+                        margin: "0.5rem 0"
+                    }}>Add New: </span>
+                    <div className="grid button_hold" style={{gridTemplateColumns:" auto auto"}}>
                     <button onClick={()=> toSeed(true)}>Password</button> 
                     <button onClick={()=> toSeed(false)}>Seed Phrase</button>
-                    <span onClick={()=> setModal(false)}>x</span>
+                    </div>
+                    <span onClick={()=> setModal(false)} className="close_button">x</span>
                     {pass ? <div>
                     <label htmlFor='services'>Service</label>
                     <input type="text" id="services" required maxLength={50} onChange={(e)=> setVal(e.target.value)}/>
@@ -141,12 +149,11 @@ export default function Passwords(){
                     <div key={234}>
                     <h2>{item.length} Passwords Haus-ed</h2>
                     <div  
-                    className="grid"
-                    style={{gridTemplateColumns:"auto auto auto auto"}}>
+                    className="grid pass_container">
                     {item.map((pass_detail : PwdDetail) => (
-                        <div key={item.indexOf(pass_detail)}>
-                            <p>{pass_detail.service}</p>
-                            <p>{pass_detail.password}</p>
+                        <div key={item.indexOf(pass_detail)} className="pass_data">
+                            <p className= "pass_head">{pass_detail.service}</p>
+                            <p className ="pass_string">{pass_detail.password}</p>
                         </div>
                     ))}
                     </div>
