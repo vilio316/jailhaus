@@ -6,6 +6,8 @@ import { changePwds, userID, userPwds, userSeeds, setSeedValues} from "../redux/
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import Seeds from "./SeedPhrases";
 import { FaPlusCircle } from "react-icons/fa";
+import { seedStyle } from "./SeedPhrases";
+import { PassDetails } from "./DataReturn";
 
 type PwdDetail = {
     service: string,
@@ -22,7 +24,13 @@ export default function Passwords(){
     const user_passes = useAppSelector(userPwds)
     const user_seed_values = useAppSelector(userSeeds)
     const sendOff = useAppDispatch()
-    
+    let [modal_state, setModal] = useState(false)
+    let [pass, toSeed] = useState(true)
+    let [value, setVal]= useState('')
+    let [password, setPass]= useState('')
+    let [seed, setSeed] = useState('')
+    let [seed_service, changeSeedService] = useState('')
+
     useEffect(()=> {
         async function loadVal(){
             if(user_value.length > 0){
@@ -86,7 +94,7 @@ export default function Passwords(){
             service: service,
             phrase: phrase,
         }
-        let holder_array : any[] = [...user_seed_values[0], seedObject]
+        let holder_array : seedStyle[] = [...user_seed_values[0], seedObject]
         let aoa : any[] = []
         aoa.push(holder_array)
         if(service.length > 0 && phrase.length > 0){
@@ -98,14 +106,6 @@ export default function Passwords(){
         setModal(false)
     }
     }
-
-    let [modal_state, setModal] = useState(false)
-    let [pass, toSeed] = useState(true)
-    let [value, setVal]= useState('')
-    let [password, setPass]= useState('')
-    let [seed, setSeed] = useState('')
-    let [seed_service, changeSeedService] = useState('')
-
 
     return(
         <>
@@ -161,13 +161,12 @@ export default function Passwords(){
             <div>
                 {user_passes.map((item : any[] ) => (
                     <div key={234}>
-                    <h2>{item.length} Passwords Haus-ed</h2>
+                    <h2 style={{margin: '0.5rem 0'}}>{item.length} Passwords Haus-ed</h2>
                     <div  
                     className="grid pass_container">
                     {item.map((pass_detail : PwdDetail) => (
                         <div key={item.indexOf(pass_detail)} className="pass_data">
-                            <p className= "pass_head">{pass_detail.service}</p>
-                            <p className ="pass_string">{pass_detail.password}</p>
+                            <PassDetails object={pass_detail}/>
                         </div>
                     ))}
                     </div>

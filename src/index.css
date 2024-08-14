@@ -185,9 +185,13 @@ li::marker{
     gap: 0.5rem;
     transition: 1s all ease-out
 }
+
+.nav_icon a{
+    font-weight: bold;
+}
+
 .side_nav{
     gap: 1rem;
-    transition: 1s all ease-in-out;
     background-color: teal;
     border-radius: 1rem;
     padding: 0.5rem;
@@ -202,9 +206,22 @@ li::marker{
 .passText{
     font-weight: bold;
 }
+
+.like_material > button{
+    outline: none;
+    border-radius: 1.5rem;
+    border: none;
+    padding: 0.5rem;
+}
+
+.like_material{
+    column-gap: 0.5rem;
+}
+
 .pass_head{
     font-weight: bold;
     font-size: 1.5rem;
+    margin: 0.5rem 0
 }
 .pass_string{
     width: 90%;

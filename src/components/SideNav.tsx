@@ -14,7 +14,7 @@ export function SideNav(){
     return(
         <>
             <div className="side_nav grid">
-                <div className="nav_icons">
+                <div className="nav_icon">
                     <div className="icon_side">
                     <FaHome/>
                     <a href="/dashboard">Home</a>
@@ -27,7 +27,7 @@ export function SideNav(){
                 </div>
                 <div className="nav_icon">
                 <FaFile/>
-                <a href="/dashboard/secure_files">Secure Files</a>
+                <a href="/dashboard">Secure Files</a>
                 </div>
                 <div className="nav_icon">
                 <FcSettings/>

@@ -1,4 +1,4 @@
-type seedStyle = {
+export type seedStyle = {
     phrase: string,
     service: string,
 }
