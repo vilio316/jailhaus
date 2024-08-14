@@ -12,7 +12,10 @@ export default function Seeds(props : any){
                 {optimus.map((item : any[]) => (
                     item.map((seedVal : seedStyle) => (
                         <div key={seedVal.service}>
-                            <p>{seedVal.service}</p>
+                            <p style={{
+                                fontSize: "1.5rem",
+                                fontWeight: "bold",
+                            }}>{seedVal.service}</p>
                             <p>{seedVal.phrase}</p>
                         </div>
                     ))
