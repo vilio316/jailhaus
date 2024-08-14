@@ -66,13 +66,18 @@ export default function Passwords(){
             service: service, 
             password: password,
         }
+        let array_of_array: any[] = [];
         let value : any[]= [...user_passes[0], passObject]
+        array_of_array.push(value)
+        console.log(array_of_array)
         if(service.length > 0 && password.length > 0){
         let {data, error} = await supaClient.from('data_bank').update({
             id: user_value,
             passwords: value, 
         }).eq('id', user_value)
         console.log(data, error)
+        sendOff(changePwds(array_of_array))
+        setModal(false)
     }
     }
 
@@ -82,11 +87,15 @@ export default function Passwords(){
             phrase: phrase,
         }
         let holder_array : any[] = [...user_seed_values[0], seedObject]
+        let aoa : any[] = []
+        aoa.push(holder_array)
         if(service.length > 0 && phrase.length > 0){
         let {data, error} = await supaClient.from('data_bank').update({
             seed_phrases: holder_array
         }).eq('id', user_value)
         console.group(data, error)
+        sendOff(setSeedValues(aoa))
+        setModal(false)
     }
     }
 
@@ -141,7 +150,7 @@ export default function Passwords(){
                     <label htmlFor="seed_value">Seed Phrase</label>
                     <textarea onChange={(e)=> {setSeed(e.target.value); console.log(seed)}} id='seed_value' placeholder="Seed Phrase" cols={25} rows={13} maxLength={250} />
 
-                    <button onClick={()=> postSeedPhrase(seed_service, seed)} className="add_button">Upload Seed Phrase</button>
+                    <button onClick={()=> {postSeedPhrase(seed_service, seed) }} className="add_button">Upload Seed Phrase</button>
                     </div>
                     }
                 </div>
