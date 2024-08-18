@@ -9,7 +9,8 @@ import { FaPlusCircle } from "react-icons/fa";
 import { seedStyle } from "./SeedPhrases";
 import { PassDetails } from "./DataReturn";
 
-type PwdDetail = {
+
+export type PwdDetail = {
     service: string,
     password: string,
 }

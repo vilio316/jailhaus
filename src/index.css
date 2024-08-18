@@ -219,7 +219,13 @@ li::marker{
     background-color: white;
     padding: 0.5rem;
 }
-
+.seed_value:hover{
+    background-color: rgba(175, 175, 175,  0.6);
+}
+.seed_value{
+    border-radius: 1.25rem;
+    padding: 0.25rem 0.5rem
+}
 .like_material{
     column-gap: 1rem;
 }
