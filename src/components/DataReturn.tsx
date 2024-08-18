@@ -1,4 +1,4 @@
-import {  FaEye, FaEyeSlash, FaEdit } from 'react-icons/fa'
+import {  FaEye, FaEyeSlash, FaEdit, FaTrash } from 'react-icons/fa'
 import { useState } from 'react'
 
 export function PassDetails(props: any){
@@ -24,9 +24,13 @@ export function PassDetails(props: any){
             <button onClick={()=> changeShow(!showState)}>
                 {showState? <FaEye/> : <FaEyeSlash/>}
             </button>
+
+            <div className='grid' style={{gridTemplateColumns:"auto auto", gap:"0"}}>
             <button>
-               EDIT <FaEdit/>
+            <FaEdit/>
             </button>
+            <button> <FaTrash fill='red'/></button>
+            </div>
         </div>
         </>
     )

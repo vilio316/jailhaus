@@ -7,7 +7,7 @@ export default function Seeds(props : any){
     let optimus: any[] = props.array 
     return(
         <>
-            <div>
+            <div id="seed_phrases">
                 <h2>Seed Phrases</h2>
                 {optimus.map((item : any[]) => (
                     item.map((seedVal : seedStyle) => (

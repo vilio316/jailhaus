@@ -5,11 +5,13 @@ import { signOut } from "../supabase/signUpIn"
 import { useAppDispatch } from "../redux/hooks"
 import { changePwds, setID, setSeedValues } from "../redux/idState"
 import { useNavigate } from "react-router-dom"
+import { useState } from "react";
 
 
 export function SideNav(){
     let dispo = useAppDispatch();
     let drought = useNavigate();
+    let [modalState, setMod]= useState(false)
     
     return(
         <>
@@ -21,9 +23,15 @@ export function SideNav(){
                     </div>
                 </div>
 
-                <div className="nav_icon">
+            <div className="nav_icon" style={{position: "relative"}} onClick={()=> setMod(!modalState)}>
                 <FaLock/>
-                <a href="/dashboard/passwords">Passwords</a>
+                <a>Passwords</a>
+                {modalState? <div id="password_container" >
+                    <a href="/dashboard/passwords">Passwords</a>
+                    <a href="/dashboard/passwords#seed_phrases">Seed Phrases</a>
+                </div> : <>
+                
+                </>}
                 </div>
                 <div className="nav_icon">
                 <FaFile/>
