@@ -30,7 +30,7 @@ export function PassDetails(props: any){
         <>
         <div>
             <p className= "pass_head">{pass_detail.service}</p>
-            <input className="pass_string" 
+            <input className="pass_string" name={pass_detail.service}
             value={pass_detail.password} 
             type={showState? 'text' : "password"} 
             style={{

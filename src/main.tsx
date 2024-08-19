@@ -9,6 +9,7 @@ import Error from './components/Error.js'
 import { Provider } from 'react-redux'
 import { persStore, redStore } from './redux/store.js'
 import { PersistGate } from 'redux-persist/integration/react'
+import FileRoute from './components/SecureFiles.js'
 
 
 const routes = createBrowserRouter([
@@ -32,6 +33,11 @@ const routes = createBrowserRouter([
     element: <SignIn/>,
     errorElement: <Error/>,
   },
+  {
+    path: '/dashboard/files',
+    element: <FileRoute/>,
+    errorElement: <Error/>
+  }
 ])
 
 

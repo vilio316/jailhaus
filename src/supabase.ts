@@ -13,17 +13,17 @@ export type Database = {
         Row: {
           id: string
           passwords: Json[] | null
-          seed_phrases: Json[] | null
+          seed_phrases: Json[]
         }
         Insert: {
           id: string
           passwords?: Json[] | null
-          seed_phrases?: Json[] | null
+          seed_phrases?: Json[]
         }
         Update: {
           id?: string
           passwords?: Json[] | null
-          seed_phrases?: Json[] | null
+          seed_phrases?: Json[]
         }
         Relationships: [
           {

@@ -35,7 +35,7 @@ export function SideNav(){
                 </div>
                 <div className="nav_icon">
                 <FaFile/>
-                <a href="/dashboard">Secure Files</a>
+                <a href="/dashboard/files">Secure Files</a>
                 </div>
                 <div className="nav_icon">
                 <FcSettings/>
@@ -50,7 +50,7 @@ export function SideNav(){
                 dispo(setSeedValues([]));
                 drought('/sign-up')
                 }
-                }>Sign Out</button>
+                }><a>Sign Out</a></button>
                 </div>
             </div>
         </>

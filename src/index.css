@@ -151,6 +151,8 @@ li::marker{
     outline: none;
     border: none;
     background-color: teal;
+    font-family: monospace;
+    padding: 0.25rem
 }
 .cta{
     display:grid ;
