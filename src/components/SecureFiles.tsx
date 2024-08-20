@@ -20,7 +20,7 @@ function uploadHandle(e : any)
 
 async function optimus(e : any){
     setFile(uploadHandle(e))
-    let file = file_value[0]
+    let file = uploadHandle(e)[0]
     console.log(file)
 
     const {data, error} = await supaClient.storage.from('jailbucket').upload(user_ID + '/' + uuidv4(), file)
@@ -62,7 +62,7 @@ useEffect(()=> {
         <input type='file' id="file_item" onChange={(e)=> {
             optimus(e)
         }
-            } accept="image/jpg, image/png, image/jpeg, image/jfif, .pdf, .docx"/>
+            } accept="image/jpg, image/png, image/jpeg"/>
         <button type='submit'>Upload</button>
             </form>
             <div style={{

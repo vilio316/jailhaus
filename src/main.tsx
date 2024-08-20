@@ -4,7 +4,7 @@ import Landing from  './components/Landing.js'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Dashboard from './components/Dashboard.js'
 import Passwords from './components/Passwords.js'
-import { SignIn } from './supabase/signUpIn.js'
+import { SignIn, SignUp } from './supabase/signUpIn.js'
 import Error from './components/Error.js'
 import { Provider } from 'react-redux'
 import { persStore, redStore } from './redux/store.js'
@@ -30,6 +30,11 @@ const routes = createBrowserRouter([
   },
   {
     path: '/sign-up',
+    element: <SignUp/>,
+    errorElement: <Error/>,
+  },
+  {
+    path: '/sign-in',
     element: <SignIn/>,
     errorElement: <Error/>,
   },
