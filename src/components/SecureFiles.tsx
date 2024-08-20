@@ -8,7 +8,6 @@ import { SideNav } from "./SideNav"
 // Image URL Template : https://rojcbfneomlgqhvbkpul.supabase.co/storage/v1/object/public/jailbucket/4c1825ca-68fb-427d-8d44-1c8568aa94fb/6056a6a2-e30f-4423-9b7b-42432231bbda
 export default function FileRoute(){
 let user_ID = useAppSelector(userID)
-let [file_value, setFile] = useState<File[]>([])
 let [received_file_value, receiveFile] = useState<any[]>([])
 
 function uploadHandle(e : any)
@@ -19,7 +18,8 @@ function uploadHandle(e : any)
 }
 
 async function optimus(e : any){
-    setFile(uploadHandle(e))
+    let files = uploadHandle(e)
+    console.log(files)
     let file = uploadHandle(e)[0]
     console.log(file)
 
@@ -41,7 +41,9 @@ async function fetchFiles() {
     })
     if(data){
         let johann =  Array.from(data)
-        receiveFile(johann)
+        let new_array = johann.filter((file) => file.name !== '.emptyFolderPlaceholder')
+        receiveFile(new_array)
+        
     }
     else(
         console.log(error)
@@ -76,8 +78,8 @@ useEffect(()=> {
                 style={{
                     maxHeight:'10rem',                    
                     borderRadius:'1.5rem'
-                }} />
-                </div>
+                }} /> 
+</div>
             )
         )
     }
