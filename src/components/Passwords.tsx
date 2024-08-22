@@ -9,16 +9,10 @@ import { FaPlusCircle } from "react-icons/fa";
 import { seedStyle } from "./SeedPhrases";
 import { PassDetails } from "./DataReturn";
 
-
 export type PwdDetail = {
     service: string,
     password: string,
 }
-
-/*type Insert ={
-    passwords?: Json| null
-  }[] | any[]
-*/
 
 export default function Passwords(){
     const user_value = useAppSelector(userID)
@@ -159,7 +153,7 @@ export default function Passwords(){
         </>: <div>
             </div>}
 
-            <div>
+            <div id="top">
                 {user_passes.map((item : any[] ) => (
                     <div key={234}>
                     <h2 style={{margin: '0.5rem 0'}}>{item.length} Passwords Haus-ed</h2>
@@ -176,13 +170,18 @@ export default function Passwords(){
                     
                 )}
             </div>
-            <Seeds array={user_seed_values}/>
-            <button className="plus_button" onClick={()=> setModal(!modal_state)}>
+
+            <button className="plus_button" onClick={()=> {
+                setModal(!modal_state);
+                }}>
                 <span>
             <FaPlusCircle/>
                 </span>
             <span>Add New Item</span>
             </button>
+
+            <Seeds array={user_seed_values}/>
+           
         </div>
         </div>
         </>

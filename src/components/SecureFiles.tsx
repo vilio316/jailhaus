@@ -2,32 +2,16 @@ import { useEffect, useState } from "react"
 import { useAppSelector } from "../redux/hooks"
 import { userID } from "../redux/idState"
 import supaClient from "../supabase/supaconfig"
-import { v4 as uuidv4 } from 'uuid'
 import { SideNav } from "./SideNav"
 import { TopTitleBar } from "./TopTitle"
 import { FaCopy } from "react-icons/fa"
 
-/*function DocCard(props: any){
-    let user_ID = useAppSelector(userID)
-    let file_obj = props.doc
-    console.log(file_obj.metadata.mimetype)
-    let [typeState, setTypeState] = useState(false)
-    if(file_obj.metadata.mimetype == 'application/pdf'){
-        setTypeState(true)
-    }
-
-    return(
-        <>
-       
-        </>
-    )
-}*/
-
-// Image URL Template : https://rojcbfneomlgqhvbkpul.supabase.co/storage/v1/object/public/jailbucket/4c1825ca-68fb-427d-8d44-1c8568aa94fb/6056a6a2-e30f-4423-9b7b-42432231bbda
 export default function FileRoute(){
 let user_ID = useAppSelector(userID)
 let [received_file_value, receiveFile] = useState<any[]>([])
 let [received_docs_value, receiveDocs] = useState<any[]>([])
+let [image_count, newImgLength] = useState(0)
+let [docs_count, newDocsLength] = useState(0)
 
 function uploadHandle(e : any)
 {
@@ -40,10 +24,10 @@ async function optimus(e : any){
     let file = uploadHandle(e)[0]
     console.log(file)
 
-    const {data, error} = await supaClient.storage.from('jailbucket').upload(user_ID + '/' + 'images' +'/' + uuidv4(), file)
+    const {data, error} = await supaClient.storage.from('jailbucket').upload(user_ID + '/' + 'images' +'/' + file.name, file)
     if(data){
         console.log(data)
-        fetchFiles()
+        fetchFiles();
     }
     else{
         console.log(error) 
@@ -54,7 +38,7 @@ async function optimus_document(e : any){
     let file = uploadHandle(e)[0]
     console.log(file)
 
-    const {data, error} = await supaClient.storage.from('jailbucket').upload(user_ID + '/' + 'documents' +'/' + uuidv4(), file)
+    const {data, error} = await supaClient.storage.from('jailbucket').upload(user_ID + '/' + 'documents' +'/' + file.name , file)
     if(data){
         fetchDocuments()
     }
@@ -73,7 +57,7 @@ async function fetchFiles() {
         let johann =  Array.from(data)
         let new_array = johann.filter((file) => file.name !== '.emptyFolderPlaceholder')
         receiveFile(new_array)
-        
+        newImgLength(new_array.length)
     }
     else(
         console.log(error)
@@ -89,6 +73,7 @@ async function fetchDocuments() {
         let johann =  Array.from(data)
         let new_array = johann.filter((file) => file.name !== '.emptyFolderPlaceholder')
         receiveDocs(new_array)
+        newDocsLength(new_array.length)
         
     }
     else(
@@ -121,7 +106,8 @@ useEffect(()=> {
             optimus_document(e)
         }}/>
             </form>
-            <p>Your Images</p>
+
+            <h2>Your Images({image_count})</h2>
             <div style={{
                 display: "grid", gridTemplateColumns:"auto auto auto auto", margin:"1rem 0", gap:'0.5rem '
             }}>
@@ -142,18 +128,20 @@ useEffect(()=> {
     }
         </div>
         </div>
-        <p>Your Documents</p>
+        <h2>Your Documents({docs_count})</h2>
         <div className="grid" style={{
-            gridTemplateColumns:"auto auto auto"
+            gridTemplateColumns:"30% 30% 30%"
         }}>
     {received_docs_value.map((doc) =>(
         <>
-         <div key={doc.id}>
+         <div key={doc.id} style={{
+            padding: '0.5rem 0',
+         }}>
             <div>
-                <FaCopy fill='red'/>
-                <p>{doc.metadata.mimetype}</p>
+                <FaCopy fill={doc.metadata.mimetype == 'application/pdf' ? 'red' : 'blue'} size={'7.5em'} style={{opacity: '0.7'}}/>
+                <p className="file_type">{doc.metadata.mimetype}</p>
             </div>
-             <a target="_blank" download href={`https://rojcbfneomlgqhvbkpul.supabase.co/storage/v1/object/public/jailbucket/${user_ID}/documents/${doc.name}`}>
+             <a className="file_link" target="_blank" download href={`https://rojcbfneomlgqhvbkpul.supabase.co/storage/v1/object/public/jailbucket/${user_ID}/documents/${doc.name}`}>
             {doc.name}
         </a>
         <p>{Number(Number(doc.metadata.size) / 1048576).toFixed(2)} MB</p>
