@@ -107,10 +107,6 @@ export default function Passwords(){
         <div>
         <TopTitleBar text={'Passwords'} />
         </div>
-        <div className="body grid">
-        <SideNav/>
-        <div className="details">
-            <h3>Details for Your Passwords</h3>
         {modal_state ? <>
             <div className="modal_wrapper grid">
                 <div className="grid" style={{
@@ -152,7 +148,10 @@ export default function Passwords(){
             </div>
         </>: <div>
             </div>}
-
+        <div className="body grid">
+        <SideNav/>
+        <div className="details">
+            <h3>Details for Your Passwords</h3>
             <div id="top">
                 {user_passes.map((item : any[] ) => (
                     <div key={234}>
