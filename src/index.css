@@ -306,7 +306,7 @@ li::marker{
         grid-template-columns: 50% 50%;
     }
     .file_link{
-        width: 10rem;
+        width: 17.5rem;
     }
     #image_cont{
         grid-template-columns: auto;
