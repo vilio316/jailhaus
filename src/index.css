@@ -4,10 +4,6 @@ html{
     font-family: monospace;
     overflow-x: hidden;
 }
-body{
-    display: grid;
-    place-items: center;
-}
 #root{
     display: grid; 
     padding: 0.5rem;
@@ -73,6 +69,10 @@ label{
 .header{
     grid-template-columns: 20% 60% 20%;
     align-items: center;
+}
+.file_container{
+    grid-template-columns: auto auto auto auto;
+    width: 90%;
 }
 .topNav{
     display: grid;
@@ -215,10 +215,15 @@ li::marker{
     text-overflow: ellipsis;
 }
 
+.file_card{
+    grid-template-columns: auto;
+}
+
+
 .file_link{
     font-weight: bold;
-    font-size: 1.5rem;
-    width: 90%;
+    font-size: 1.25rem;
+    width: 80%;
     display: block;
 }
 .nav_icon a{
@@ -244,7 +249,7 @@ li::marker{
 
 #password_container a{
     display: block;
-    font-size: 0.75rem;
+    font-size: 1rem;
 }
 
 .like_material button{
@@ -264,7 +269,9 @@ li::marker{
 .like_material{
     column-gap: 1rem;
 }
-
+.file_image{
+    height: 5rem;
+}
 .pass_head{
     font-weight: bold;
     font-size: 1.5rem;
@@ -283,6 +290,11 @@ li::marker{
 .pass_data{
     padding: 0.5rem;
 }
+
+#image_cont{
+    grid-template-columns: auto auto auto auto;
+}
+
 @media screen and (max-width: 768px){
     .grid{
         grid-template-columns: auto;
@@ -292,6 +304,17 @@ li::marker{
     }
     .pass_container{
         grid-template-columns: 50% 50%;
-        width: 90%;
+    }
+    .file_link{
+        width: 85%;
+    }
+    #image_cont{
+        grid-template-columns: auto;
+    }
+    .file_card{
+        grid-template-columns: 15% auto;
+    }
+    .file_image{
+        height: 2.5rem;
     }
 }

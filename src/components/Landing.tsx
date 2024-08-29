@@ -12,7 +12,7 @@ export default function Landing(){
                 <a>Contact</a>
             </div>
             <div  className="side">
-                <a href="/sign-up">Log In / Sign Up</a>
+                <a href="/sign-in">Log In / Sign Up</a>
             </div>
         </div>
 

@@ -4,7 +4,9 @@ import { userID } from "../redux/idState"
 import supaClient from "../supabase/supaconfig"
 import { SideNav } from "./SideNav"
 import { TopTitleBar } from "./TopTitle"
-import { FaCopy } from "react-icons/fa"
+import word_pic from '../assets/word_img.jfif'
+import pdf_pic from '../assets/pdf_pic.jfif'
+
 
 export default function FileRoute(){
 let user_ID = useAppSelector(userID)
@@ -12,6 +14,7 @@ let [received_file_value, receiveFile] = useState<any[]>([])
 let [received_docs_value, receiveDocs] = useState<any[]>([])
 let [image_count, newImgLength] = useState(0)
 let [docs_count, newDocsLength] = useState(0)
+let [image_load_state, loadImages] = useState(false)
 
 function uploadHandle(e : any)
 {
@@ -27,6 +30,7 @@ async function optimus(e : any){
     const {data, error} = await supaClient.storage.from('jailbucket').upload(user_ID + '/' + 'images' +'/' + file.name, file)
     if(data){
         console.log(data)
+        loadImages(false);
         fetchFiles();
     }
     else{
@@ -58,6 +62,7 @@ async function fetchFiles() {
         let new_array = johann.filter((file) => file.name !== '.emptyFolderPlaceholder')
         receiveFile(new_array)
         newImgLength(new_array.length)
+        loadImages(true)
     }
     else(
         console.log(error)
@@ -92,6 +97,7 @@ useEffect(()=> {
         <TopTitleBar text="Secure Files"/>
         <div className="body">
             <SideNav/>
+            
             <div>
             <form>
                 <label htmlFor="file_item">Upload an Image</label>
@@ -108,44 +114,50 @@ useEffect(()=> {
             </form>
 
             <h2>Your Images({image_count})</h2>
-            <div style={{
-                display: "grid", gridTemplateColumns:"auto auto auto auto", margin:"1rem 0", gap:'0.5rem '
+            <div id="image_cont" className="grid" style={{ margin:"1rem 0", gap:'0.5rem', alignItems:"center"
             }}>
-            {received_file_value.map((file) => (
+            {image_load_state ? <>{received_file_value.map((file) => (
                 <div key={file.id} className="grid" style={{
-                    justifyContent:"center"
+                    margin:"0.5rem 0", 
+                    alignContent:"center"
                 }}>
                 <img 
                 src={`https://rojcbfneomlgqhvbkpul.supabase.co/storage/v1/object/public/jailbucket/${user_ID}/images/${file.name}`} 
+                
                 alt={file.name}
                 style={{
-                    maxWidth:'10rem',                    
-                    borderRadius:'1.5rem'
+                    maxHeight:'12.5rem',     maxWidth:"80%"               
                 }} /> 
-</div>
+                <figcaption>{file.name}</figcaption>
+                </div>
             )
-        )
+        )}</> : <>
+            <p>Loading...</p>
+        </>
     }
         </div>
         </div>
-        <h2>Your Documents({docs_count})</h2>
-        <div className="grid" style={{
-            gridTemplateColumns:"30% 30% 30%"
-        }}>
+        <h2><u>Your Documents({docs_count})</u></h2>
+        <div className="grid file_container">
     {received_docs_value.map((doc) =>(
         <>
-         <div key={doc.id} style={{
-            padding: '0.5rem 0',
+         <div  className="file_card" key={doc.id} style={{
+            padding: '0.5rem 0', display:"grid",
          }}>
-            <div>
-                <FaCopy fill={doc.metadata.mimetype == 'application/pdf' ? 'red' : 'blue'} size={'7.5em'} style={{opacity: '0.7'}}/>
-                <p className="file_type">{doc.metadata.mimetype}</p>
-            </div>
+            <div className="grid" style={{
+                alignContent:"center"
+            }}>
+                <img src={ doc.metadata.mimetype == 'application/pdf' ? pdf_pic : word_pic } style={{
+                    borderRadius:"1rem",
+                    opacity: 0.5
+                }} className="file_image"/> 
+                </div>
+                <div>
              <a className="file_link" target="_blank" download href={`https://rojcbfneomlgqhvbkpul.supabase.co/storage/v1/object/public/jailbucket/${user_ID}/documents/${doc.name}`}>
             {doc.name}
         </a>
         <p>{Number(Number(doc.metadata.size) / 1048576).toFixed(2)} MB</p>
-        
+        </div>
         </div>
         </>
     ) )}
