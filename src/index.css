@@ -313,7 +313,7 @@ li::marker{
 .file_link{
     font-weight: bold;
     font-size: 1.25rem;
-    width: 80%;
+    width: 20rem;
     display: block;
 }
 .nav_icon a{

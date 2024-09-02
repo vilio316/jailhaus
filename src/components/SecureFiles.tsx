@@ -9,6 +9,8 @@ import pdf_pic from '../assets/pdf_pic.jfif'
 import { FaDownload } from "react-icons/fa"
 import { FaTrashCan } from "react-icons/fa6"
 
+//https://rojcbfneomlgqhvbkpul.supabase.co/storage/v1/object/public/jailbucket/4c1825ca-68fb-427d-8d44-1c8568aa94fb/images/20240822_004936.jpg
+
 
 export default function FileRoute(){
 let user_ID = useAppSelector(userID)
@@ -23,6 +25,62 @@ let [docs_count, newDocsLength] = useState(0)
 
 //state to show "Loading..." string in the images component
 let [image_load_state, loadImages] = useState(false)
+
+async function deleteHandler(file : any){
+    let updated_files = received_file_value.filter((item) => item.name !== file.name)
+    receiveFile(updated_files)
+    console.log(received_file_value)
+    newImgLength(updated_files.length)
+
+    const { data, error } = await supaClient
+      .storage
+      .from('jailbucket')
+      .remove([ `${user_ID}/images/${file.name}` ])
+    
+    console.log(data, error)
+    }
+
+//Image Component
+function Image(props : any){
+    let file = props.file
+    let [isHovered, changeHover] = useState(false)
+    let template = `https://rojcbfneomlgqhvbkpul.supabase.co/storage/v1/object/public/jailbucket/${user_ID}/images/`
+
+    return(
+        <div key={file.id} className="grid img_file_container" style={{
+            margin:"0.5rem 0",  
+            position: 'relative'
+        }} onMouseOver={()=> changeHover(true)} onMouseOut={()=> changeHover(false)}   >
+        <img 
+        src={`${template}/${file.name}`} 
+        className="secure_image"
+        alt={file.name}
+        style={{
+            padding: '0.5rem'       
+        }} /> 
+        <a href= {`${template}/${file.name}`} target="_blank" className="file_link">{file.name}</a>
+
+        <div className={isHovered ? 'img_modal shown' : "img_modal hidden"}>
+            <div className="modal_text_container">
+                <p className="file_link">{file.name}</p>
+                <span> Size:  {Number(Number(file.metadata.size) / 1048576).toFixed(2)} MB </span>
+            </div>
+                <div style={{
+                    display: `${isHovered ? 'grid' : 'none' }`,
+                    gridTemplateColumns:'auto auto',
+                    gap: '1rem'
+                }}>
+                
+                <a href={`${template}/${file.name}`} download target="_blank">
+                <FaDownload fill="slate" size={'2.5em'} />
+                </a>
+                <FaTrashCan size={'2.5em'} fill="red" onClick={() => deleteHandler(file)}/>
+                </div>
+        </div>
+        </div>
+    )
+}
+
 
 
 
@@ -66,7 +124,7 @@ async function fetchFiles() {
     const {data, error} = await supaClient.storage.from('jailbucket').list(user_ID + '/' +'images' + '/', {
         limit: 100,
         offset: 0,
-        sortBy: { column: 'name', order: "desc"}
+        sortBy: { column: 'name', order: "asc"}
     })
     if(data){
         let johann =  Array.from(data)
@@ -113,11 +171,11 @@ useEffect(()=> {
             <div className="grid label_container" style={{
                 gap: '0.5rem'
             }}>
-                <label htmlFor="file_item" className="file_label">Upload an Image
+                <label className="file_label">Upload an Image
         <input type='file' id="image_files" onChange={(e)=> {
             optimus(e)
         }
-            } accept="image/jpg, image/png, image/jpeg, image/jfif"/>
+             } accept="image/jpg, image/png, image/jpeg, image/jfif"/>
     </label>
 
         <label className="file_label">Upload Document
@@ -169,40 +227,4 @@ useEffect(()=> {
     )
 }
 
-function Image(props : any){
-    let user_ID = useAppSelector(userID)
-    let file = props.file
-    let [isHovered, changeHover] = useState(false)
 
-    return(
-        <div key={file.id} className="grid img_file_container" style={{
-            margin:"0.5rem 0",  
-            position: 'relative'
-        }} onMouseOver={()=> changeHover(true)} onMouseOut={()=> changeHover(false)}   >
-        <img 
-        src={`https://rojcbfneomlgqhvbkpul.supabase.co/storage/v1/object/public/jailbucket/${user_ID}/images/${file.name}`} 
-        className="secure_image"
-        alt={file.name}
-        style={{
-            padding: '0.5rem'       
-        }} /> 
-        <a href= {`https://rojcbfneomlgqhvbkpul.supabase.co/storage/v1/object/public/jailbucket/${user_ID}/images/${file.name}`} target="_blank" className="file_link">{file.name}</a>
-
-        <div className={isHovered ? 'img_modal shown' : "img_modal hidden"}>
-            <div className="modal_text_container">
-                <p className="file_link">{file.name}</p>
-                <span> Size:  {Number(Number(file.metadata.size) / 1048576).toFixed(2)} MB </span>
-            </div>
-                <div style={{
-                    display: `${isHovered ? 'grid' : 'none' }`,
-                    gridTemplateColumns:'auto auto',
-                    gap: '1rem'
-                }}>
-                
-                <FaDownload fill="slate" size={'3em'} />
-                <FaTrashCan size={'3em'} fill="red"/>
-                </div>
-        </div>
-        </div>
-    )
-}
