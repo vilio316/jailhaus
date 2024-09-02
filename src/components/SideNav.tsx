@@ -48,7 +48,7 @@ export function SideNav(){
                 dispo(setID(''));
                 dispo(changePwds([]));
                 dispo(setSeedValues([]));
-                drought('/sign-up')
+                drought('/')
                 }
                 }><a>Sign Out</a></button>
                 </div>

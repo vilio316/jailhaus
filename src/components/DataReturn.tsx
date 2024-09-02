@@ -81,7 +81,7 @@ export function PassDetails(props: any){
            {edit_feat ? 
            <>
            <div style={{position: "absolute", top: '0', left:"0", width:"100%", height:"100%", zIndex:'2', backgroundColor:"rgba(175,175,175,0.8)", display:'grid', justifyItems:"center", alignItems:"center"}}>
-                <div style={{display:'grid'}}>
+                <div style={{display:'grid', alignSelf:"start", marginTop:'10rem'}}>
                     <span style={{
                         fontSize: '1.5rem',
                         justifySelf: 'end',

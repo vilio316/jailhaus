@@ -11,8 +11,10 @@ export default function Landing(){
                 <a>Our Services</a>
                 <a>Contact</a>
             </div>
-            <div  className="side">
-                <a href="/sign-in">Log In / Sign Up</a>
+            <div className="side">
+                <a href="/sign-in" style={{
+                    fontSize:"1.5rem", color:"white", width:"80%"
+                }}className="cta">Log In</a>
             </div>
         </div>
 
@@ -26,29 +28,29 @@ export default function Landing(){
 
             <section className="perk"> 
                 <div>
-                    <p>What We Do</p>
+                    <h2>What We Do</h2>
                     <p>Jailhaus is a web-based software platform that allows users to access and store files, documents and other sensitive files. If you've ever been worried about forgetting your passwords or losing your hardware tokens and seed phrases, Jailhaus was made with you in mind! We offer top-notch security for all your data and can ensure that no one but you has access to <i>your</i> files.</p>
                 </div>
             </section>
-                <p>Why Should You Use Jailhaus?</p>
+                <h2>Why Should You Use Jailhaus?</h2>
 
                 <section className="perk">
                 <div>
-                    <p>Security</p>
+                    <h3>Security</h3>
                     <p>"Whatever's stored with Jailhaus stays with Jailhaus". It's been our motto from the very beginning and now, it's an assurance we're giving you as well. Jailhaus will <i>never</i> disclose your data to external parties and we will always mantain a high security standard with all of our apps. Our databases are also <i>Row Level Secure</i>, which basically means that they're totally safe from any bad actors trying to worm their way in.</p>
                 </div>
             </section>
 
             <section className="perk">
                 <div>
-                    <p>Ease of Access</p>
+                    <h3>Ease of Access</h3>
                     <p>Away from all of the technical jargon, Jailhaus prioritises you, the user. We've engineered the system to ensure that it's easy and hitch-free to use. From any of your devices and at any point in time, you're sure to have secure, dependable access to the files that you store with us!</p>
                 </div>
             </section>
 
             <section className="perk">
                 <div>
-                    <p>Versatility</p>
+                    <h3>Versatility</h3>
                     <p>While passwords are our most common use case, our system is also suited for several other purposes, including file storage and encryption. With Jailhaus, you won't have to worry about losing access to vital files because we'll ensure that they're all tidily stored in one place.</p>
                 </div>
             </section>
@@ -58,6 +60,7 @@ export default function Landing(){
                 <div className="price_board grid">
                     <div className="price_card">
                         <p className='price_tier'>Free</p>
+                        <p className="price_tag">$0</p>
                         <div>
                             <ul className="features">
                                 <li>Unlimited Password Storage</li>
@@ -71,6 +74,7 @@ export default function Landing(){
                     </div>
                     <div className="price_card">
                         <p className='price_tier'>Basic</p>
+                        <p className="price_tag">$5.99</p><span className="pm">per month</span>
                         <div>
                             <ul className="features">
                             <li>Unlimited Password Storage</li>
@@ -84,6 +88,7 @@ export default function Landing(){
                     </div>
                     <div className="price_card">
                         <p className='price_tier'>UberLok</p>
+                        <p className="price_tag">$11.00</p> <span className="pm">per month</span>
                         <div>
                             <ul className="features">
                             <li>Unlimited Password Storage</li>
