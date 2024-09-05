@@ -7,6 +7,11 @@ export type seedStyle = {
 
 export default function Seeds(props : any){
     let optimus: any[] = props.array 
+    function copyPhrase(text : string){
+        navigator.clipboard.writeText(text)
+        alert("Copied!")
+    }
+
     return(
         <>
             <div id="seed_phrases">
@@ -20,7 +25,7 @@ export default function Seeds(props : any){
                             }}>{seedVal.service}</p>
                             <p>{seedVal.phrase}</p>
                             <div className="like_material">
-                            <button title="Copy Text"><FaCopy fillOpacity={0.7}/></button>
+                            <button title="Copy Text" onClick={()=> copyPhrase(seedVal.phrase)}><FaCopy fillOpacity={0.7}/></button>
                         </div>
                       
                     </div>

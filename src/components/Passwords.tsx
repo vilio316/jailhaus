@@ -170,7 +170,7 @@ export default function Passwords(){
                 )}
             </div>
 
-            <button className="plus_button" onClick={()=> {
+            <button className="add_button" onClick={()=> {
                 setModal(!modal_state);
                 }}>
                 <span>

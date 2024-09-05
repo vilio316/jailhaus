@@ -222,7 +222,8 @@ label{
     content: 'x'
 }
 .pass_container{
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: 25% 25% 25% 25%;
+    gap: 0.5rem
 }
 li::marker{
     color: green;
@@ -282,7 +283,9 @@ li::marker{
     display: block
 }
 .dash_head{
-    grid-template-columns: 80% auto;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 50% auto;
 }
 .user_icon{
     justify-self: end;
@@ -308,8 +311,25 @@ li::marker{
 .file_card{
     grid-template-columns: auto;
 }
+.nav_click{
+    width: 3rem;
+    display: grid;
+    justify-self: end;
+    padding: 0.5rem
+}
+.nav_click > span{ 
+    width: 100%;
+    background-color: black;
+    border-radius: 0.25rem;
+    height: 0.5rem;
+    margin: 0.05rem 0;
 
-
+}
+.mobile_nav{
+    width: 100%;
+    position: relative;
+    display: none;
+}
 .file_link{
     font-weight: bold;
     font-size: 1.25rem;
@@ -320,6 +340,26 @@ li::marker{
     font-weight: bold;
 }
 
+.nav_content{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    background-color: rgba(175, 175, 175,  0.8);
+    font-weight: bold;
+    padding: 0.5rem;
+    width: 100%;
+    margin-right: -25rem;
+    transition: all 1s ease-in;
+}
+.nav_content a, .nav_content span{
+    display: block;
+    text-align: right;
+    padding: 0.25rem;
+}
+.show{
+    margin-right: 0;
+}
 .side_nav{
     gap: 1rem;
     background-color: teal;
@@ -380,6 +420,14 @@ li::marker{
 .pass_data{
     padding: 0.5rem;
 }
+.pass_data:hover{
+    background-color: rgba(175, 175, 175,  0.6);
+    border-radius: 1.25rem;
+}
+.pass_data:hover .buttons > button, .pass_data .like_material > button,
+.pass_data:hover .pass_head, .pass_data:hover .pass_string{
+    background-color: inherit
+}
 .modal_text_container > p{
     font-size: 1.5rem;
     font-weight: bold;
@@ -391,6 +439,9 @@ li::marker{
 @media screen and (max-width: 480px){
     .grid{
         grid-template-columns: auto;
+    }
+    .side_nav{
+        display: none;
     }
     html{
         font-size: 12px;    
@@ -413,5 +464,8 @@ li::marker{
     .secure_image{
         height: 12.5rem;
         max-width: 90%;
+    }
+    .mobile_nav{
+        display: grid
     }
 }

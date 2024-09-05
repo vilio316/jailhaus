@@ -71,11 +71,11 @@ export function PassDetails(props: any){
                 {showState? <FaEye/> : <FaEyeSlash/>}
             </button>
 
-            <div className='grid' style={{gridTemplateColumns:"auto auto", gap:"0"}}>
-            <button>
-            <FaEdit onClick={()=> showEdit(true)}/>
+            <div className='grid buttons' style={{gridTemplateColumns:"auto auto", gap:"0.25rem"}}>
+            <button title="Edit Item" onClick={()=> showEdit(true)}>
+            <FaEdit/>
             </button>
-            <button onClick={()=> deleteValue(pass_detail)}> <FaTrash fill='red'/></button>
+            <button onClick={()=> deleteValue(pass_detail)} title="Delete Item"> <FaTrash fill='red'/></button>
             </div>
 
            {edit_feat ? 

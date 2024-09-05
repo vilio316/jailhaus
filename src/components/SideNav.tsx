@@ -17,10 +17,8 @@ export function SideNav(){
         <>
             <div className="side_nav grid">
                 <div className="nav_icon">
-                    <div className="icon_side">
                     <FaHome/>
                     <a href="/dashboard">Home</a>
-                    </div>
                 </div>
 
             <div className="nav_icon" style={{position: "relative"}} onClick={()=> setMod(!modalState)}>
@@ -33,16 +31,20 @@ export function SideNav(){
                 
                 </>}
                 </div>
+
                 <div className="nav_icon">
                 <FaFile/>
                 <a href="/dashboard/files">Secure Files</a>
                 </div>
+
                 <div className="nav_icon">
                 <FcSettings/>
                 <a href="/dashboard">Settings</a>
                 </div>
+                
                 <div className="nav_icon">
                 <FaSignOutAlt/>
+                
                 <button className= "signOut_button" onClick={()=> {
                 signOut(); 
                 dispo(setID(''));
@@ -53,6 +55,7 @@ export function SideNav(){
                 }><a>Sign Out</a></button>
                 </div>
             </div>
+          
         </>
     )
 }
