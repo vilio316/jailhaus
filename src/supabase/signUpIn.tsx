@@ -23,7 +23,7 @@ export function SignUp(){
             <div> 
             <h2>Sign Up For JailHaus</h2>
         <input type='text'  className="sign_form_input"  placeholder="Email" onChange={(e)=> changeMail(e.target.value)}/>
-        <input type="password"  className="sign_form_input" name="password" id="Password" placeholder="pwd" onChange={(e) => changePassword(e.target.value)} />
+        <input type="password"  className="sign_form_input" name="password" id="Password" placeholder="Password" onChange={(e) => changePassword(e.target.value)} />
         <button className="form_button" onClick={()=> {
             signUp(email, password); 
             navigate('/sign-in')

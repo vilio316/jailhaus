@@ -170,7 +170,9 @@ export default function Passwords(){
                 )}
             </div>
 
-            <button className="add_button" onClick={()=> {
+            <button style={{
+                margin: '1.25rem 0'
+            }}className="add_button" onClick={()=> {
                 setModal(!modal_state);
                 }}>
                 <span>

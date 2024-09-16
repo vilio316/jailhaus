@@ -92,7 +92,7 @@ input[type="file"]{
     text-align: center;
 }
 .header{
-    grid-template-columns: 20% 60% 20%;
+    grid-template-columns: auto auto auto;
     align-items: center;
 }
 .file_container{
@@ -101,7 +101,7 @@ input[type="file"]{
 }
 .topNav{
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto;
 }
 
 .topNav a{
@@ -144,21 +144,33 @@ input[type="file"]{
 .shown > *{
     opacity: 1;
 }
-.hidden{
+.hide{
     height: 0
 }
-.hidden > *{
+.hide > *{
     opacity: 0;
+}
+
+a.add_button{
+    margin: 1rem 0;
+    display: inline-block;
 }
 
 ul.features{
     margin: 0.75rem 0;
     list-style-type: square;
+    padding: 0.5rem
 }
 .price_board{
+    display: grid;
     grid-template-columns: auto auto auto;
     justify-items: center;
 }
+
+.price_card{
+    padding: 0.25rem 0.5rem;
+}
+
 .price_tier{
     text-transform: capitalize;
     font-weight: bold;
@@ -199,7 +211,7 @@ input{
     display: block;
 }
 footer{
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto;
     gap: 1rem;
     justify-items: center;
     width: 100%;
@@ -325,6 +337,9 @@ li::marker{
     margin: 0.05rem 0;
 
 }
+.mob{
+    display: none
+}
 .mobile_nav{
     width: 100%;
     position: relative;
@@ -339,6 +354,12 @@ li::marker{
 .nav_icon a{
     font-weight: bold;
 }
+.show_mod{
+    margin-top: 0;
+}
+.hide_mod{
+    margin-top: -120%;
+}
 
 .nav_content{
     position: absolute;
@@ -349,8 +370,8 @@ li::marker{
     font-weight: bold;
     padding: 0.5rem;
     width: 100%;
-    margin-right: -25rem;
-    transition: all 1s ease-in;
+    margin-right: -125%;
+    transition: all 0.5s ease-in-out;
 }
 .nav_content a, .nav_content span{
     display: block;
@@ -437,20 +458,38 @@ li::marker{
 }
 
 @media screen and (max-width: 480px){
+    .price_board{
+        grid-template-columns: auto auto;
+    }
     .grid{
         grid-template-columns: auto;
     }
     .side_nav{
         display: none;
     }
+    footer{width: 85%; justify-self: center}
+    .lead{font-size: 4.5rem;}
     html{
         font-size: 12px;    
     }
     .pass_container{
         grid-template-columns: 50% 50%;
     }
+    .logo{ text-align: left;}
+    .topNav{ grid-template-columns: auto;}
+    .topNav a{ text-align: left;}
     .file_link{
         width: 17.5rem;
+    }
+    .links, .comp_name{
+        width: 100%;
+    }
+    a.cta{
+        width: auto;
+        font-size: 1.25rem;
+    }
+    .side{
+        display: none;
     }
     #image_cont{
         grid-template-columns: auto;
@@ -467,5 +506,8 @@ li::marker{
     }
     .mobile_nav{
         display: grid
+    }
+    .mob{
+        display: grid;
     }
 }

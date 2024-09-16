@@ -14,14 +14,16 @@ export default function Dashboard(){
                         <p>Passwords: 27</p>
                         <p>Average Password Length: 5 characters</p>
                         <p>Password Strength Status : 24.75%, Needs Work</p>
-                        <a href='/dashboard/passwords'>See Password Advisor</a>
+                        <a href='/dashboard/passwords' className="add_button">See Password Advisor</a>
                     </div>
                     <div>
+                        <h3>Files</h3>
                         <p>Files: 5/ 25GB</p>
-                        <p>File Type(s): .mkv, .docx, .pdf, .jpg</p>
-                        <a>Get More Storage</a>
+                        <p>File Type(s): .docx, .pdf, .jpeg, .jfif</p>
+                        <a href="/dashboard/files" className="add_button">See File Details</a>
                     </div>
                     <div>
+                        <h3>Files</h3>
                         <p>Files: 5/ 25GB</p>
                         <p>File Type(s): .mkv, .docx, .pdf, .jpg</p>
                         <a>Get More Storage</a>

@@ -1,15 +1,29 @@
+import { useState } from "react"
+
 export default function Landing(){
+    let [mod_state, changeMod] = useState(false)
     return(
         <>
         <div className="header grid">
-            <div>
+            <div style={{
+                display:'grid',
+                gridTemplateColumns:'70% 30%'
+            }}>
                 <h2 className="logo">Jailhaus</h2>
+                <div className="nav_click mob" onClick={()=> changeMod(!mod_state)}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
-            <div className="topNav">
+            <div className={`topNav ${mod_state ? 'show_mod': 'hide_mod'}`}>
                 <a href='/'>Home</a>
                 <a>About</a>
                 <a>Our Services</a>
                 <a>Contact</a>
+                <a href="/sign-in" style={{
+                    fontSize:"1.5rem", color:"white", width:"100%", justifySelf:"start"
+                }}className="cta">Log In</a>
             </div>
             <div className="side">
                 <a href="/sign-in" style={{
@@ -37,7 +51,7 @@ export default function Landing(){
                 <section className="perk">
                 <div>
                     <h3>Security</h3>
-                    <p>"Whatever's stored with Jailhaus stays with Jailhaus". It's been our motto from the very beginning and now, it's an assurance we're giving you as well. Jailhaus will <i>never</i> disclose your data to external parties and we will always mantain a high security standard with all of our apps. Our databases are also <i>Row Level Secure</i>, which basically means that they're totally safe from any bad actors trying to worm their way in.</p>
+                    <p>"Whatever's stored with Jailhaus stays with Jailhaus". It's been our motto from the very beginning and now, it's an assurance we're giving you as well. Jailhaus will <i>never</i> disclose your data to external parties and we will always mantain a high security standard with all of our apps. Our databases are also <b><i>Row Level Secure</i></b>, which basically means that they're totally safe from any bad actors trying to worm their way in.</p>
                 </div>
             </section>
 
@@ -56,8 +70,10 @@ export default function Landing(){
             </section>
 
             <section className="pricing">
-                <h3>Find A Plan That's Right for You</h3>
-                <div className="price_board grid">
+                <h2 style={{
+                    textAlign: "center"
+                }}>Find A Plan That's Right for You</h2>
+                <div className="price_board">
                     <div className="price_card">
                         <p className='price_tier'>Free</p>
                         <p className="price_tag">$0</p>
@@ -107,7 +123,7 @@ export default function Landing(){
             </section>
 
         <footer className="grid">
-            <div>
+            <div className="comp_name">
                 <h2>Jailhaus</h2>
                 <p> &copy; 2024 vilio316</p>
                 <p>The One Pass System</p>

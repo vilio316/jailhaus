@@ -25,6 +25,7 @@ let [docs_count, newDocsLength] = useState(0)
 
 //state to show "Loading..." string in the images component
 let [image_load_state, loadImages] = useState(false)
+let [docs_load_state, loadDocs] = useState(false)
 
 async function deleteHandler(file : any){
     let updated_files = received_file_value.filter((item) => item.name !== file.name)
@@ -60,7 +61,7 @@ function Image(props : any){
         }} /> 
         <a href= {`${template}/${file.name}`} target="_blank" className="file_link">{file.name}</a>
 
-        <div className={isHovered ? 'img_modal shown' : "img_modal hidden"}>
+        <div className={isHovered ? 'img_modal shown' : "img_modal hide"}>
             <div className="modal_text_container">
                 <p className="file_link">{file.name}</p>
                 <span> Size:  {Number(Number(file.metadata.size) / 1048576).toFixed(2)} MB </span>
@@ -113,6 +114,7 @@ async function optimus_document(e : any){
 
     const {data, error} = await supaClient.storage.from('jailbucket').upload(user_ID + '/' + 'documents' +'/' + file.name , file)
     if(data){
+        loadDocs(false)
         fetchDocuments()
     }
     else{
@@ -148,6 +150,7 @@ async function fetchDocuments() {
         let new_array = johann.filter((file) => file.name !== '.emptyFolderPlaceholder')
         receiveDocs(new_array)
         newDocsLength(new_array.length)
+        loadDocs(true)
         
     }
     else(
@@ -199,7 +202,7 @@ useEffect(()=> {
         </div>
         <h2><u>Your Documents({docs_count})</u></h2>
         <div className="grid file_container">
-    {received_docs_value.map((doc) =>(
+    { docs_load_state ? <>{received_docs_value.map((doc) =>(
         <>
          <div  className="file_card" key={doc.id} style={{
             padding: '0.5rem 0', display:"grid",
@@ -220,7 +223,8 @@ useEffect(()=> {
         </div>
         </div>
         </>
-    ) )}
+    ) )} </> : <p>Loading...</p>}
+
     </div>
         </div>
         </>
